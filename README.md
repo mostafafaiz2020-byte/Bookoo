@@ -1,0 +1,261 @@
+# 📚 Bookia Store
+
+### A Modern Bookstore Mobile Application Built with Flutter
+
+Bookia Store is a Flutter-based mobile application designed to provide a clean, modern, and user-friendly bookstore experience.
+
+The project focuses on building responsive interfaces, reusable components, and organized navigation while following a feature-based project structure.
+
+## ✨ Features
+
+- **Onboarding Screens** – Introduce users to the application.
+- **Authentication UI** – Login and registration screens.
+- **Form Validation** – Validate user inputs through reusable validators.
+- **Home Screen** – Bookstore home interface.
+- **Reusable Widgets** – Custom text fields, buttons, headers, and other UI components.
+- **Responsive Design** – Adapt layouts to different screen sizes.
+- **Custom Theme** – Consistent colors and text styles.
+- **Native Splash Screen** – Customized application launch screen.
+- **Localization Setup** – Support for managing multiple languages using Easy Localization.
+
+## 🛠️ Technologies & Tools
+
+| Technology            | Purpose                           |
+| --------------------- | --------------------------------- |
+| Flutter               | Cross-platform mobile development |
+| Dart                  | Programming language              |
+| Flutter ScreenUtil    | Responsive UI                     |
+| Easy Localization     | Localization                      |
+| Flutter Native Splash | Native splash screen              |
+| Material Design       | UI components                     |
+| VS Code               | Development environment           |
+
+## 📂 Project Structure
+
+```text
+lib/
+│
+├── core/
+│   ├── networking/
+│   │   ├── api_endpoint.dart
+│   │   ├── dio_factory.dart
+│   │   └── api_errorHandling.dart
+│   │
+│   ├── routes/
+│   │   ├── app_routes.dart
+│   │   └── routes_name.dart
+│   │
+│   ├── services/
+│   │   └── locale/
+│   │       └── local_helper.dart
+│   │
+│   ├── theme/
+│   │   ├── app_colors.dart
+│   │   └── app_text_style.dart
+│   │
+│   ├── utils/
+│   │   └── const_app.dart
+│   │
+│   └── widgets/
+│       └── validator.dart
+│
+├── features/
+│   │
+│   ├── splash/
+│   │   └── ui/
+│   │       └── splash_screen.dart
+│   │
+│   ├── onboarding/
+│   │   └── ui/
+│   │       ├── widgets/
+│   │       │   ├── button.dart
+│   │       │   └── header.dart
+│   │       └── onboardingScreen.dart
+│   │
+│   ├── auth/
+│   │   ├── cubit/
+│   │   │   ├── auth_cubit.dart
+│   │   │   └── auth_state.dart
+│   │   ├── repo/
+│   │   │   └── auth_repo.dart
+│   │   └── ui/
+│   │       ├── widgets/
+│   │       │   ├── custom_text_field.dart
+│   │       │   ├── divider.dart
+│   │       │   ├── footer.dart
+│   │       │   ├── header.dart
+│   │       │   └── SocialButton.dart
+│   │       ├── loginScreen.dart
+│   │       └── registerScreen.dart
+│   │
+│   ├── bottom_nav_bar/
+│   │   └── presentation/
+│   │       └── bottom_nav_screen.dart
+│   │
+│   ├── home/
+│   │   ├── models/
+│   │   │   ├── books_model.dart
+│   │   │   └── slider_model.dart
+│   │   ├── presentation/
+│   │   │   ├── cubit/
+│   │   │   │   ├── home_cubit.dart
+│   │   │   │   └── home_state.dart
+│   │   │   └── ui/
+│   │   │       ├── widgets/
+│   │   │       ├── home_screen.dart
+│   │   │       └── search_screen.dart
+│   │   └── repo/
+│   │       └── home_repo.dart
+│   │
+│   ├── book_details/
+│   │   ├── presentation/
+│   │   │   ├── cubit/
+│   │   │   │   ├── book_details_cubit.dart
+│   │   │   │   └── book_details_state.dart
+│   │   │   └── ui/
+│   │   │       ├── widgets/
+│   │   │       └── book_details_screen.dart
+│   │   └── repo/
+│   │       └── book_details_repo.dart
+│   │
+│   ├── cart/
+│   │   ├── data/
+│   │   │   └── model/
+│   │   │       └── cart_model.dart
+│   │   ├── presentation/
+│   │   │   ├── cubit/
+│   │   │   │   ├── cart_cubit.dart
+│   │   │   │   └── cart_state.dart
+│   │   │   └── ui/
+│   │   │       ├── widgets/
+│   │   │       └── cart_screen.dart
+│   │   └── repo/
+│   │       └── cart_repo.dart
+│   │
+│   ├── checkout/
+│   │   └── presentation/
+│   │       └── ui/
+│   │           ├── widgets/
+│   │           └── checkout_screen.dart
+│   │
+│   ├── wishlist/
+│   │   ├── data/
+│   │   │   └── model/
+│   │   │       └── wishlist_model.dart
+│   │   ├── presentation/
+│   │   │   ├── cubit/
+│   │   │   │   ├── wishlist_cubit.dart
+│   │   │   │   └── wishlist_state.dart
+│   │   │   └── ui/
+│   │   │       ├── widgets/
+│   │   │       │   └── wishlist_item.dart
+│   │   │       └── wishlist_screen.dart
+│   │   └── repo/
+│   │       └── wishlist_repo.dart
+│   │
+│   └── profile/
+│       ├── data/
+│       │   └── model/
+│       │       └── profile_response.dart
+│       ├── presentation/
+│       │   ├── cubit/
+│       │   │   ├── profile_cubit.dart
+│       │   │   └── profile_state.dart
+│       │   └── ui/
+│       │       ├── widgets/
+│       │       │   ├── header_profile.dart
+│       │       │   ├── infoUser.dart
+│       │       │   └── menu_profile.dart
+│       │       └── profile_screen.dart
+│       └── repo/
+│           └── profile_repo.dart
+│
+├── gen/
+│   └── locale_keys.g.dart
+│
+├── bookia_store.dart
+└── main.dart
+```
+
+
+
+## 📱 App Screenshots
+
+### Error Handling
+
+<div style="display: flex; gap: 10px; align-items: flex-start;">
+  <img src="assets/screenshots/flutter_01 copy 4.png" width="180"/>
+  <img src="assets/screenshots/flutter_02 copy 3.png" width="180"/>
+</div>
+
+### Onboarding & Authentication | Home & Book Discovery | Book Search & Details | Shopping Cart & Checkout | Wishlist & Favorites | User Profile & Account Management
+
+<img src="assets\screenshots\flutter_04.png" width="180"/> <img src="assets\screenshots\flutter_01.png" width="180"/>
+<img src="assets\screenshots\flutter_01 copy.png" width="180"/>
+<img src="assets\screenshots\flutter_02.png" width="180"/> <img src="assets\screenshots\flutter_03.png" width="180"/>
+<img src="assets\screenshots\flutter_05.png" width="180"/>
+<img src="assets\screenshots\flutter_03 copy 3.png" width="180"/>
+<img src="assets\screenshots\flutter_03 copy.png" width="180"/>
+<img src="assets\screenshots\flutter_04 copy.png" width="180"/>
+<img src="assets\screenshots\flutter_01 copy 2.png" width="180"/>
+<img src="assets\screenshots\flutter_02 copy.png" width="180"/>
+<img src="assets\screenshots\flutter_03 copy 2.png" width="180"/>
+<img src="assets\screenshots\flutter_01 copy 3.png" width="180"/>
+<img src="assets\screenshots\flutter_02 copy 2.png" width="180"/>
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK
+- Dart SDK
+- Android Studio or VS Code
+- Android Emulator or Physical Device
+
+### Installation
+
+**1. Clone the repository**
+
+```bash
+git clone YOUR_REPOSITORY_URL
+```
+
+**2. Navigate to the project directory**
+
+```bash
+cd bookia
+```
+
+**3. Install dependencies**
+
+```bash
+flutter pub get
+```
+
+**4. Run the application**
+
+```bash
+flutter run
+```
+
+## 🎯 Project Goals
+
+- Build a modern and intuitive bookstore mobile interface.
+- Practice Flutter UI development and reusable widget design.
+- Implement responsive layouts and consistent styling.
+- Organize application code using a feature-based structure.
+- Improve navigation and form validation.
+
+## 👩‍💻 Developer
+
+**Aya Abdelbaset Mohamed**
+
+Junior Flutter Developer
+
+[GitHub](https://github.com/Aya3bdelbaset)
+
+---
+
+⭐ If you find this project useful, consider giving it a star!
+#   B o o k o  
+ 
