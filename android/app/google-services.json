@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "251849403972",
+    "project_id": "bookia-store-ce163",
+    "storage_bucket": "bookia-store-ce163.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251849403972:android:31cdd1b3fdd7bd4c26d611",
+        "android_client_info": {
+          "package_name": "com.example.bookia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGqmEVnOFB9UEltY0z3te743HcZC5drys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

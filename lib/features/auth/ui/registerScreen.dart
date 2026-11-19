@@ -1,0 +1,204 @@
+import 'package:bookia/core/theme/app_colors.dart';
+import 'package:bookia/features/auth/cubit/auth_cubit.dart';
+import 'package:bookia/features/auth/ui/loginScreen.dart';
+import 'package:bookia/features/auth/ui/widgets/custom_text_field.dart';
+import 'package:bookia/features/auth/ui/widgets/footer.dart';
+import 'package:bookia/features/auth/ui/widgets/header.dart';
+import 'package:bookia/features/home/presentation/ui/home_screen.dart';
+import 'package:bookia/features/onboarding/ui/widgets/button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthLoading) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => const Center(child: CircularProgressIndicator()),
+          );
+        } else if (state is AuthSuccess) {
+          Navigator.pop(context);
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const HomeScreen()),
+          );
+        } else if (state is AuthError) {
+          Navigator.pop(context);
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Registration failed. Please try again.'),
+            ),
+          );
+        }
+      },
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Scaffold(
+            body: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.all(22.w),
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 41.w,
+                          height: 41.h,
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(12.r),
+                            border: Border.all(color: AppColors.outlineGray),
+                          ),
+                          child: IconButton(
+                            onPressed: () => Navigator.maybePop(context),
+                            icon: const Icon(Icons.arrow_back_ios_new),
+                            iconSize: 19.sp,
+                            color: AppColors.black,
+                          ),
+                        ),
+                        20.verticalSpace,
+                        AuthHeader(title: 'Hello! Register to get started'),
+                        20.verticalSpace,
+
+                        CustomTextField(
+                          controller: nameController,
+                          hintText: 'Username ',
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter your username';
+                            }
+                            return null;
+                          },
+                        ),
+                        15.verticalSpace,
+                        CustomTextField(
+                          controller: emailController,
+                          hintText: 'Email ',
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            final email = value?.trim() ?? '';
+                            if (email.isEmpty) {
+                              return 'Please enter your email';
+                            }
+                            if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+                                .hasMatch(email)) {
+                              return 'Please enter a valid email';
+                            }
+                            return null;
+                          },
+                        ),
+                        15.verticalSpace,
+                        CustomTextField(
+                          controller: passwordController,
+                          hintText: 'Password',
+                          obscureText: true,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your password';
+                            }
+                            return null;
+                          },
+                        ),
+                        15.verticalSpace,
+                        CustomTextField(
+                          controller: confirmPasswordController,
+                          hintText: 'Confirm password',
+                          obscureText: true,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please confirm your password';
+                            }
+                            if (value != passwordController.text) {
+                              return 'Passwords do not match';
+                            }
+                            return null;
+                          },
+                        ),
+
+                        30.verticalSpace,
+
+                        BlocBuilder<AuthCubit, AuthState>(
+                          builder: (context, state) {
+                            final isLoading = state is AuthLoading;
+
+                            return OnboardingButton(
+                              text: 'Register',
+                              backgroundColor: AppColors.gold,
+                              foregroundColor: AppColors.white,
+                              onPressed: () {
+                                if (isLoading) return;
+
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<AuthCubit>().register(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text,
+                                    passwordConfirmation:
+                                        confirmPasswordController.text,
+                                    name: nameController.text.trim(),
+                                  );
+                                }
+                              },
+                            );
+                          },
+                        ),
+
+                        90.verticalSpace,
+                        AuthFooter(
+                          message: 'Already have an account?',
+                          actionText: 'Login Now',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
