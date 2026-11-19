@@ -27,36 +27,35 @@ A modern bookstore mobile application built with Flutter.
 - Easy Localization
 - Flutter ScreenUtil
 
-## 📱 Screenshots
+## 📱 App Screenshots
 
-<p align="center">
-  <img src="assets/screenshots/flutter_01.png" width="180"/>
-  <img src="assets/screenshots/flutter_02.png" width="180"/>
-  <img src="assets/screenshots/flutter_03.png" width="180"/>
-  <img src="assets/screenshots/flutter_04.png" width="180"/>
-</p>
+\<p align="center">   \<img src="assets/screenshots/flutter_03.png" width="180"/>   \<img src="assets/screenshots/flutter_01 copy 2.png" width="180"/>   \<img src="assets/screenshots/flutter_05.png" width="180"/> \</p>
+
+\<p align="center">   \<img src="assets/screenshots/flutter_02 copy.png" width="180"/>   \<img src="assets/screenshots/flutter_04.png" width="180"/>   \<img src="assets/screenshots/flutter_01 copy 3.png" width="180"/> \</p>
+
+\<p align="center">   \<img src="assets/screenshots/flutter_03 copy.png" width="180"/>   \<img src="assets/screenshots/flutter_06.png" width="180"/>   \<img src="assets/screenshots/flutter_02 copy 3.png" width="180"/> \</p>
 
 ## 🚀 Installation
 
-1. Clone the repository:
+**1. Clone the repository**
 
 ```bash
 git clone https://github.com/mostafafaiz2020-byte/Bookoo.git
 ```
 
-2. Open the project:
+**2. Navigate to the project**
 
 ```bash
 cd Bookoo
 ```
 
-3. Install dependencies:
+**3. Install dependencies**
 
 ```bash
 flutter pub get
 ```
 
-4. Run the application:
+**4. Run the application**
 
 ```bash
 flutter run
